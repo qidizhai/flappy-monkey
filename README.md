@@ -23,9 +23,9 @@ This app will consist of a single screen with game board, game controls, and nav
 This project will be implemented with the following technologies:
 1: JavaScript for game logic
 
-## Implementation Timeline
-Day 1: Setup all necessary Node modules. Finish the canvas layout, game components, controllers
-Day 2: Finish the obstacles, score and images
-Day 3: Finish the sound, gravity, bouncing
-Day 4: Finish Rotation and Movement
-Day 5: Make it pretty
+## Implementation Timeline:
+* Day 1: Setup all necessary Node modules. Finish the canvas layout, game components, controllers.
+* Day 2: Finish the obstacles, score and images.
+* Day 3: Finish the sound, gravity, bouncing.
+* Day 4: Finish Rotation and Movement.
+* Day 5: Make it pretty.
