@@ -1,0 +1,19 @@
+{
+  "name": "flappy_monkey",
+  "version": "1.0.0",
+  "description": "### Background",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "webpack --watch --development"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "webpack": "^4.17.3"
+  },
+  "devDependencies": {
+    "webpack-cli": "^3.1.2"
+  }
+}
