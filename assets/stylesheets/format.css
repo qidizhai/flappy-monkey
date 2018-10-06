@@ -1,3 +1,58 @@
 canvas {
-  border: 1px solid;
+  border: 1px solid #2E8B57;
+  border-radius: 30px;
+  margin-left: 10%;
+}
+
+body {
+  background-color: #FFE4C4;
+  font-family: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+  text-align: center;
+  background-image: url(https://c1.staticflickr.com/8/7306/27691115156_6576041bff_b.jpg);
+}
+
+.master {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+h1 {
+  font-family: 'Monoton', cursive;
+  font-size: 50px;
+  color: #00BFFF;
+  font-weight: bold;
+}
+
+.game {
+  margin-top: 100px;
+}
+
+.instruction {
+  border: 0.5px solid #A0522D;
+  border-radius: 50px;
+  background-color: #A0522D;
+  width: 30%;
+  height: 100%;
+  margin-right: 10%;
+  display: block;
+}
+
+#start {
+  border: 0.5px solid #006400;
+  border-radius: 10px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  padding: 10px 10px 10px 10px;
+}
+
+.links {
+  margin-top: 20px;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 5px;
+}
+
+ h3 {
+  padding: 10px 10px 5px 5px;
 }

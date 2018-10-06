@@ -3,19 +3,39 @@
 <head>
   <meta charset="utf-8">
 
-
-
-  <link href="https://fonts.googleapis.com/css?family=Audiowide|Raleway:300,400,700" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/stylesheets/reset.css">
   <link rel="stylesheet" href="./assets/stylesheets/format.css">
-
-
+  <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Lobster|Monoton" rel="stylesheet">
   <title>Flappy Monkey</title>
 </head>
 <body>
+  <h1>Flappy Monkey</h1>
   <div class="master">
-    <h1>Flappy &nbsp; Moneky !</h1>
-    <canvas id="myCanvas" width="700" height="450"></canvas>
 
+    <canvas id="myCanvas" width="700" height="450"></canvas>
+    <div class="instruction game">
+      <h3>Instructions</h3>
+      <p>Please press 'start' button to start <br/> Press 'o' to move up and press 'p' to move down
+        <br/>Good luck ❤️
+        <br/>
+        <button id="start" class="button">Start</button>
+        <br/>
+      </p>
+    </div>
+  </div>
+  <div class="master links">
+    <a class="instruction" href="https://www.linkedin.com/in/qidizhai/">
+      <h4>Linkedin</h4>
+    </a>
+    <a class="instruction" href="https://github.com/qidizhai/mountain_surfing">
+      <h4>Github</h4>
+    </a>
+    <a class="instruction" href="https://mountainsurfing.herokuapp.com/">
+      <h4>Full stack project</h4>
+    </a>
+    <a class="instruction" href="">
+      <h4>Resume</h4>
+    </a>
   </div>
   <script type="application/javascript" src="vendor/keymaster.js"></script>
   <script type="text/javascript" src="bundle.js"></script>

@@ -1,2 +1,403 @@
-!function(t){var s={};function i(e){if(s[e])return s[e].exports;var h=s[e]={i:e,l:!1,exports:{}};return t[e].call(h.exports,h,h.exports,i),h.l=!0,h.exports}i.m=t,i.c=s,i.d=function(t,s,e){i.o(t,s)||Object.defineProperty(t,s,{enumerable:!0,get:e})},i.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},i.t=function(t,s){if(1&s&&(t=i(t)),8&s)return t;if(4&s&&"object"==typeof t&&t&&t.__esModule)return t;var e=Object.create(null);if(i.r(e),Object.defineProperty(e,"default",{enumerable:!0,value:t}),2&s&&"string"!=typeof t)for(var h in t)i.d(e,h,function(s){return t[s]}.bind(null,h));return e},i.n=function(t){var s=t&&t.__esModule?function(){return t.default}:function(){return t};return i.d(s,"a",s),s},i.o=function(t,s){return Object.prototype.hasOwnProperty.call(t,s)},i.p="",i(i.s=0)}([function(t,s,i){"use strict";i.r(s);var e=class{constructor(t){this.image=new Image,this.image.src=t.src,this.height=t.height,this.width=t.width,this.x_pos=t.x_pos,this.y_pos=t.y_pos,this.ctx=t.ctx,this.image.onload=(()=>{this.ctx.drawImage(this.image,this.x_pos,this.y_pos,this.width,this.height)})}update(t){t.drawImage(this.image,this.x_pos,this.y_pos,this.width,this.height)}collisionwith(t){var s=!0;return(this.x_pos+this.width<t.x_pos||this.x_pos>t.x_pos+t.width||this.y_pos+this.height<t.y_pos||this.y_pos>t.y_pos+t.height)&&(s=!1),0!==this.y_pos&&400!==this.y_pos||(s=!0),s}};var h=class{constructor(t){this.image=new Image,this.image2=new Image,this.image.src=t.src,this.image.src2=t.src2,this.height=t.height,this.width=t.width,this.x_pos=t.x_pos,this.y_pos=t.y_pos,this.ctx=t.ctx,this.image.onload=(()=>{this.ctx.drawImage(this.image,this.x_pos,this.y_pos,this.width,this.height)}),this.image2.onload=(()=>{this.ctx.drawImage(this.image2,this.x_pos-5,this.height,50,10)})}update(t){t.drawImage(this.image,this.x_pos,this.y_pos,this.width,this.height),t.drawImage(this.image2,this.x_pos-5,this.height,50,10)}};var o=class{constructor(t){this.image=new Image,this.image.src=t.src,this.height=t.height,this.width=t.width,this.x_pos=t.x_pos,this.y_pos=t.y_pos,this.ctx=t.ctx,this.image.onload=(()=>{this.ctx.drawImage(this.image,this.x_pos,this.y_pos,this.width,this.height)})}update(t){t.drawImage(this.image,this.x_pos,this.y_pos,this.width,this.height),t.drawImage(this.image,this.x_pos+this.width,this.y_pos,this.width,this.height)}move(){this.x_pos-=1,this.x_pos==-this.width&&(this.x_pos=0)}};var r=class{constructor(t,s){this.ctx=t,this.canvas=s,this.frameNo=0,this.count=0,this.flag=!1,this.score=0,this.dy=1,this.rightPressed=!1,this.monkey=new e({x_pos:50,y_pos:120,width:50,height:50,src:"./assets/images/flappy_monkey.png",ctx:this.ctx}),this.background=new o({x_pos:0,y_pos:0,width:700,height:450,src:"./assets/images/background.jpg",ctx:this.ctx}),this.pipes=[],this.intervalId=window.setInterval(this.updateGame.bind(this),10)}bindKeyHandlers(){key("up",()=>{this.rightPressed=!0}),key("down",()=>{this.rightPressed=!1})}keyDownHandler(t){39==t.keyCode&&(this.rightPressed=!0)}keyUpHandler(t){39==t.keyCode&&(this.rightPressed=!1)}drawScore(){this.ctx.font="16px Arial",this.ctx.fillStyle="#0095DD",this.ctx.fillText("Score: "+this.score,8,20)}updateGame(){this.bindKeyHandlers(),this.ctx.clearRect(0,0,this.canvas.width,this.canvas.height),this.frameNo+=1,this.background.move(),this.background.update(this.ctx),this.renderPipes(),this.isGameover(),this.move_monkey(),this.move_pipes(),this.monkey.update(this.ctx),this.updateScore()}everyInterval(t){return this.frameNo%t==0}isGameover(){for(let t=0;t<this.pipes.length;t++)if(this.monkey.collisionwith(this.pipes[t]))return alert("GAME OVER"),void clearInterval(this.intervalId)}move_monkey(){this.rightPressed?this.monkey.y_pos-=this.dy:this.rightPressed||(this.monkey.y_pos+=this.dy)}move_pipes(){for(let t=0;t<this.pipes.length;t++)this.pipes[t].x_pos+=-1,this.pipes[t].update(this.ctx)}updateScore(){this.drawScore(),this.pipes[this.count].x_pos>=49&&this.pipes[this.count].x_pos<=50&&(!0===this.flag?(this.score+=1,this.flag=!1):this.flag=!0,this.count+=2)}renderPipe(t,s,i,e,o,r){this.pipes.push(new h({x_pos:t,y_pos:s,width:i,height:e,src:r,ctx:o}))}renderPipes(){if(1==this.frameNo||this.everyInterval(150)){let t=20,s=200,i=Math.floor(Math.random()*(s-t+1)+t),e=120,h=Math.floor(Math.random()*e+e);this.renderPipe(this.canvas.width,0,40,i,this.ctx,"./assets/images/pipe2.png"),this.renderPipe(this.canvas.width-5,i,50,10,this.ctx,"./assets/images/pipe1.png"),this.renderPipe(this.canvas.width,150+h,40,this.canvas.height-150-h,this.ctx,"./assets/images/pipe2.png"),this.renderPipe(this.canvas.width-5,150+h,50,10,this.ctx,"./assets/images/pipe1.png")}}};document.addEventListener("DOMContentLoaded",()=>{var t=document.getElementById("myCanvas"),s=t.getContext("2d");new r(s,t)})}]);
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./lib/flappy_monkey.js");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./lib/background.js":
+/*!***************************!*\
+  !*** ./lib/background.js ***!
+  \***************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+class Background {
+  constructor(options){
+    this.image = new Image();
+    this.image.src = options.src;
+    this.height = options.height;
+    this.width = options.width;
+    this.x_pos = options.x_pos;
+    this.y_pos = options.y_pos;
+    this.ctx = options.ctx;
+    this.image.onload = () => {
+      this.ctx.drawImage(this.image, this.x_pos, this.y_pos, this.width, this.height);
+    };
+  }
+
+  update(ctx) {
+    ctx.drawImage(this.image, this.x_pos, this.y_pos, this.width, this.height);
+    ctx.drawImage(this.image, this.x_pos + this.width, this.y_pos, this.width, this.height);
+  }
+
+  move() {
+    this.x_pos -= 1;
+    if (this.x_pos == -this.width){
+      this.x_pos = 0;
+    }
+  }
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Background);
+
+
+/***/ }),
+
+/***/ "./lib/flappy_monkey.js":
+/*!******************************!*\
+  !*** ./lib/flappy_monkey.js ***!
+  \******************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _game_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./game.js */ "./lib/game.js");
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  var canvas = document.getElementById("myCanvas");
+  var ctx = canvas.getContext("2d");
+  document.getElementById("start").addEventListener("click", ()=>{
+     var game = new _game_js__WEBPACK_IMPORTED_MODULE_0__["default"](ctx, canvas);
+  })
+});
+
+
+/***/ }),
+
+/***/ "./lib/game.js":
+/*!*********************!*\
+  !*** ./lib/game.js ***!
+  \*********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _monkey_obj_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./monkey_obj.js */ "./lib/monkey_obj.js");
+/* harmony import */ var _pipes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pipes.js */ "./lib/pipes.js");
+/* harmony import */ var _background_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./background.js */ "./lib/background.js");
+
+
+
+
+class Game {
+  constructor(ctx, canvas) {
+    this.ctx = ctx;
+    this.canvas = canvas;
+    this.frameNo = 0;
+    this.count = 0;
+    this.flag = false;
+    this.score = 0;
+    this.dy = 1;
+    this.rightPressed = false;
+
+    this.monkey = new _monkey_obj_js__WEBPACK_IMPORTED_MODULE_0__["default"]({
+      x_pos: 50,
+      y_pos: 120,
+      width: 50,
+      height: 50,
+      src: "./assets/images/monkeyRun.png",
+      ctx: this.ctx
+    });
+
+    this.background = new _background_js__WEBPACK_IMPORTED_MODULE_2__["default"]({
+      x_pos: 0,
+      y_pos: 0,
+      width: 700,
+      height: 450,
+      src: "./assets/images/backgroundForest.jpg",
+      ctx: this.ctx
+    });
+
+    this.pipes = [];
+    this.intervalId = window.setInterval(this.updateGame.bind(this), 10);
+  }
+
+  bindKeyHandlers(){
+    key('o', ()=>{
+      this.rightPressed = true;
+    });
+
+    key('p', ()=>{
+      this.rightPressed = false;
+    });
+  }
+
+
+  drawScore() {
+    this.ctx.font = "18px Arial";
+    this.ctx.fillStyle = "#0095DD";
+    this.ctx.fillText("Score: " + this.score, 10, 30);
+  }
+
+  updateGame() {
+    this.bindKeyHandlers();
+    this.monkey.image.src = "./assets/images/monkeyRun.png",
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.frameNo += 1;
+    this.background.move();
+    this.background.update(this.ctx);
+    this.renderPipes();
+    this.isGameover();
+    this.move_monkey();
+    this.move_pipes();
+    this.monkey.update(this.ctx);
+    this.updateScore();
+  }
+
+  everyInterval(n) {
+    if (this.frameNo % n === 0){
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  isGameover() {
+    for (let i = 0; i < this.pipes.length; i++){
+      if (this.monkey.collisionwith(this.pipes[i])) {
+        this.ctx.font="30px Verdana";
+        this.ctx.fillStyle='black';
+        this.ctx.fillText("You crashed! Final score: "+ this.score, 150, 250);
+        clearInterval(this.intervalId);
+        return;
+      }
+    }
+  }
+
+  move_monkey() {
+    if(this.rightPressed) {
+      this.monkey.y_pos -= this.dy;
+    }
+    else if (!this.rightPressed) {
+      this.monkey.image.src = "./assets/images/monkeyJump.png",
+      this.monkey.y_pos += this.dy;
+    }
+  }
+
+  move_pipes() {
+    for (let i = 0; i < this.pipes.length; i++){
+      this.pipes[i].x_pos += -1;
+      this.pipes[i].update(this.ctx);
+    }
+  }
+
+  updateScore() {
+    this.drawScore();
+    if (this.pipes[(this.count)].x_pos >= 49 && this.pipes[(this.count)].x_pos <= 50 ) {
+      if(this.flag === true){
+        this.score += 1;
+        this.flag = false;
+      } else {
+      this.flag = true;
+      }
+      this.count += 2;
+    }
+  }
+
+  renderPipe(x_pos, y_pos, width, height, ctx,src){
+    this.pipes.push(new _pipes_js__WEBPACK_IMPORTED_MODULE_1__["default"]({
+      x_pos: x_pos,
+      y_pos: y_pos,
+      width: width,
+      height: height,
+      src: src,
+      ctx: ctx
+    }));
+  }
+
+  renderPipes() {
+    if (this.frameNo == 1 || this.everyInterval(150)) {
+      let minHeight = 20;
+      let maxHeight = 200;
+      let height = Math.floor(Math.random()*(maxHeight-minHeight + 1) + minHeight);
+      let minGap = 120;
+      let maxGap = 280;
+      let gap = Math.floor(Math.random()*minGap + minGap);
+      this.renderPipe(this.canvas.width, 0, 40, height, this.ctx, "./assets/images/pipe2.png" );
+      this.renderPipe(this.canvas.width-5, height, 50, 10, this.ctx, "./assets/images/pipe1.png" );
+      this.renderPipe(this.canvas.width, 150 + gap,40, this.canvas.height-150-gap, this.ctx, "./assets/images/pipe2.png");
+      this.renderPipe(this.canvas.width-5, 150 + gap,50, 10, this.ctx, "./assets/images/pipe1.png");
+    }
+  }
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Game);
+
+
+/***/ }),
+
+/***/ "./lib/monkey_obj.js":
+/*!***************************!*\
+  !*** ./lib/monkey_obj.js ***!
+  \***************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+class Monkey {
+  constructor(options){
+    this.image = new Image();
+    this.image.src = options.src;
+    this.height = options.height;
+    this.width = options.width;
+    this.x_pos = options.x_pos;
+    this.y_pos = options.y_pos;
+    this.ctx = options.ctx;
+    this.image.onload = () => {
+      this.ctx.drawImage(this.image, this.x_pos, this.y_pos, this.width, this.height);
+    };
+  }
+
+  update(ctx) {
+    ctx.drawImage(this.image, this.x_pos, this.y_pos, this.width, this.height);
+  }
+
+  collisionwith(otherobj) {
+    var crash = true;
+    if ((this.x_pos + this.width < otherobj.x_pos) ||
+       (this.x_pos > otherobj.x_pos + otherobj.width) ||
+       (this.y_pos + this.height < otherobj.y_pos) ||
+       (this.y_pos > otherobj.y_pos + otherobj.height)) {
+         crash = false;
+      }
+    if (this.y_pos === 0 || this.y_pos === 400) {
+      crash = true;
+    }
+    return crash;
+  }
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Monkey);
+
+
+/***/ }),
+
+/***/ "./lib/pipes.js":
+/*!**********************!*\
+  !*** ./lib/pipes.js ***!
+  \**********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+class Pipe {
+  constructor(options){
+    this.image = new Image();
+    this.image2 = new Image();
+    this.image.src = options.src;
+    this.image.src2 = options.src2;
+    this.height = options.height;
+    this.width = options.width;
+    this.x_pos = options.x_pos;
+    this.y_pos = options.y_pos;
+    this.ctx = options.ctx;
+    this.image.onload = () => {
+      this.ctx.drawImage(this.image, this.x_pos, this.y_pos, this.width, this.height);
+    };
+    this.image2.onload = () => {
+      this.ctx.drawImage(this.image2, this.x_pos-5, this.height, 50, 10);
+    };
+  }
+
+  update(ctx) {
+    ctx.drawImage(this.image, this.x_pos, this.y_pos, this.width, this.height);
+    ctx.drawImage(this.image2, this.x_pos-5, this.height, 50, 10);
+  }
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Pipe);
+
+
+/***/ })
+
+/******/ });
 //# sourceMappingURL=bundle.js.map
