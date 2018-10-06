@@ -9,6 +9,8 @@ body {
   font-family: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
   text-align: center;
   background-image: url(https://c1.staticflickr.com/8/7306/27691115156_6576041bff_b.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .master {
