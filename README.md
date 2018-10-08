@@ -20,6 +20,7 @@ In addition, this project includes:
 This app consists of a single screen with game board, game controls, and nav links to the Github, my LinkedIn, and the personal site. Game controls includes Start button.
 ![alt text](https://github.com/qidizhai/flappy_monkey/blob/master/monkeysurfing.png "Logo Title Text 1")
 
+
 ## Architecture and Technologies:
 This project is implemented with the following technologies:
 1: JavaScript for game logic
