@@ -17,7 +17,7 @@ In addition, this project will include:
 3. Links to the github, Live demo, Linkedin
 
 ## Wireframs:
-This app will consist of a single screen with game board, game controls, and nav links to the Github, my LinkedIn, and the About modal. Game controls will include Start, Stop, and Reset buttons as well as a slider to control the speed. On the left, three clickable shapes will be used to toggle between the types of grids available.
+This app will consist of a single screen with game board, game controls, and nav links to the Github, my LinkedIn, and the About modal. Game controls will include Start button.
 
 ## Architecture and Technologies:
 This project will be implemented with the following technologies:
