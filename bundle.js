@@ -162,6 +162,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _monkey_obj_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./monkey_obj.js */ "./lib/monkey_obj.js");
 /* harmony import */ var _pipes_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pipes.js */ "./lib/pipes.js");
 /* harmony import */ var _background_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./background.js */ "./lib/background.js");
+/* harmony import */ var _sound_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./sound.js */ "./lib/sound.js");
+
 
 
 
@@ -196,15 +198,17 @@ class Game {
     });
 
     this.pipes = [];
+    this.mySound = new _sound_js__WEBPACK_IMPORTED_MODULE_3__["default"]("./assets/audio/audio.mp3");
+    this.mySound.play();
     this.intervalId = window.setInterval(this.updateGame.bind(this), 10);
   }
 
   bindKeyHandlers(){
-    key('o', ()=>{
+    key('up', ()=>{
       this.rightPressed = true;
     });
 
-    key('p', ()=>{
+    key('down', ()=>{
       this.rightPressed = false;
     });
   }
@@ -243,8 +247,9 @@ class Game {
     for (let i = 0; i < this.pipes.length; i++){
       if (this.monkey.collisionwith(this.pipes[i])) {
         this.ctx.font="30px Verdana";
-        this.ctx.fillStyle='black';
-        this.ctx.fillText("You crashed! Final score: "+ this.score, 150, 250);
+        this.ctx.fillStyle='blue';
+        this.ctx.fillText("You crashed! Final score: "+ this.score, 150, 200);
+        this.ctx.fillText("Press start button again to restart", 100, 250);
         clearInterval(this.intervalId);
         return;
       }
@@ -395,6 +400,39 @@ class Pipe {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (Pipe);
+
+
+/***/ }),
+
+/***/ "./lib/sound.js":
+/*!**********************!*\
+  !*** ./lib/sound.js ***!
+  \**********************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+class Sound {
+  constructor(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+  }
+
+  play(){
+    this.sound.play();
+  }
+
+  pause(){
+    this.sound.pause();
+  }
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Sound);
 
 
 /***/ })

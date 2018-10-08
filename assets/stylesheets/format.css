@@ -11,6 +11,7 @@ body {
   background-image: url(https://c1.staticflickr.com/8/7306/27691115156_6576041bff_b.jpg);
   background-size: cover;
   background-repeat: no-repeat;
+  overflow-y: hidden;
 }
 
 .master {
@@ -38,6 +39,7 @@ h1 {
   height: 100%;
   margin-right: 10%;
   display: block;
+  margin-left: 30px;
 }
 
 #start {
