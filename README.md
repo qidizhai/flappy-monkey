@@ -19,7 +19,7 @@ In addition, this project will include:
 
 ## Wireframs:
 This app will consist of a single screen with game board, game controls, and nav links to the Github, my LinkedIn, and the About modal. Game controls will include Start button.
-![alt text](https://github.com/qidizhai/flappy_monkey/blob/master/monkeysurfing.png "Logo Title Text 1")
+![alt text](https://github.com/qidizhai/flappy-monkey/blob/master/monkeysurfing.png)
 
 ## Architecture and Technologies:
 This project will be implemented with the following technologies:
