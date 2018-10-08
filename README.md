@@ -1,4 +1,5 @@
 # flappy-monkey
+[Live](https://qidizhai.github.io/flappy-monkey/)
 
 ## Background
 
@@ -18,10 +19,12 @@ In addition, this project will include:
 
 ## Wireframs:
 This app will consist of a single screen with game board, game controls, and nav links to the Github, my LinkedIn, and the About modal. Game controls will include Start button.
+![alt text](https://github.com/qidizhai/flappy_monkey/blob/master/monkeysurfing.png "Logo Title Text 1")
 
 ## Architecture and Technologies:
 This project will be implemented with the following technologies:
 1: JavaScript for game logic
+2: Canvas for animation
 
 ## Implementation Timeline:
 * Day 1: Setup all necessary Node modules. Finish the canvas layout, game components, controllers.
