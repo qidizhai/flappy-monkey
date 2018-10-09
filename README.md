@@ -2,8 +2,8 @@
 [Live](https://qidizhai.github.io/flappy-monkey/)
 
 ## Background
-
-Flappy monkey is a classic example of the concept of flappy bird. There are several blocks along the way, the goal is to let monkey pass the blocks as many as possible.
+![alt text](https://github.com/qidizhai/flappy-monkey/blob/master/monkeysurfing.png "Logo Title Text 1")
+Flappy monkey is a classic example of the concept of flappy bird. There are several pipes along the way, the goal is to let monkey pass the pipes as many as possible.
 
 ## Functionality & MVP
 
@@ -16,19 +16,17 @@ In addition, this project includes:
 2. A production README
 3. Links to the github, Live demo, LinkedIn
 
-## Wireframs:
-This app consists of a single screen with game board, game controls, and nav links to the Github, my LinkedIn, and the personal site. Game controls includes Start button.
-![alt text](https://github.com/qidizhai/flappy-monkey/blob/master/monkeysurfing.png "Logo Title Text 1")
-
 
 ## Architecture and Technologies:
 This project is implemented with the following technologies:
 1: JavaScript for game logic
 2: Canvas for animation
 
-## Implementation Timeline:
-* Day 1: Setup all necessary Node modules. Finish the canvas layout, game components, controllers.
-* Day 2: Finish the obstacles, score and images.
-* Day 3: Finish the sound, gravity, bouncing.
-* Day 4: Finish Rotation and Movement.
-* Day 5: Make it pretty.
+## Feature Highlights:
+### Control Schemes and Key Handlers
+Flappy monkey uses the keymaster.js library to link key presses and game activity. Keymaster exposes one method called 'key', which takes a key and a callback method as arguments, which can be mapped to any press of that key.
+![alt text](https://github.com/qidizhai/flappy-monkey/blob/master/keyhandler.png "Logo Title Text 1")
+
+### Pipes Generation
+Pipes are generated at the right side of the canvas every time. Math.random() has been used for randomizing the gap between each pipes and the height of pipes.
+![alt text](https://github.com/qidizhai/flappy-monkey/blob/master/pipes.png "Logo Title Text 1")
