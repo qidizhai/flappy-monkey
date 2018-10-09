@@ -12,7 +12,7 @@ With this Flappy monkey's simulator, users are able to
 2. Check the scores
 
 In addition, this project includes:
-1. An About modal describing the background and rules of the game
+1. An instruction describes rules of the game
 2. A production README
 3. Links to the github, Live demo, LinkedIn
 
@@ -24,7 +24,7 @@ This project is implemented with the following technologies:
 
 ## Feature Highlights:
 ### Control Schemes and Key Handlers
-Flappy monkey uses the keymaster.js library to link key presses and game activity. Keymaster exposes one method called 'key', which takes a key and a callback method as arguments, which can be mapped to any press of that key.
+Flappy monkey uses the `keymaster.js` library to link key presses and game activity. Keymaster exposes one method called `key`, which takes a key and a callback method as arguments, which can be mapped to any press of that key.
 ```
 bindKeyHandlers(){
     key('up', ()=>{
@@ -38,7 +38,7 @@ bindKeyHandlers(){
 ```
 
 ### Pipes Generation
-Pipes are generated at the right side of the canvas every time. Math.random() has been used for randomizing the gap between each pipes and the height of pipes.
+Pipes are generated at the right side of the canvas every time. `Math.random()` has been used for randomizing the gap between each pipes and the height of pipes.
 ```
 renderPipes() {
     if (this.frameNo == 1 || this.everyInterval(150)) {
