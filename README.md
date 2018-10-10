@@ -25,7 +25,7 @@ This project is implemented with the following technologies:
 ## Feature Highlights:
 ### Control Schemes and Key Handlers
 Flappy monkey uses the `keymaster.js` library to link key presses and game activity. Keymaster exposes one method called `key`, which takes a key and a callback method as arguments, which can be mapped to any press of that key.
-```
+```js
 bindKeyHandlers(){
     key('up', ()=>{
       this.rightPressed = true;
@@ -39,7 +39,7 @@ bindKeyHandlers(){
 
 ### Pipes Generation
 Pipes are generated at the right side of the canvas every time. `Math.random()` has been used for randomizing the gap between each pipes and the height of pipes.
-```
+```js
 renderPipes() {
     if (this.frameNo == 1 || this.everyInterval(150)) {
       let minHeight = 20;
